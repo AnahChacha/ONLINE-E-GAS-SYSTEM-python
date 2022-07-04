@@ -7,9 +7,11 @@ from django.db.models import Sum
 from .forms import OrderForm,CustomerForm,ProductForm,CreateUserForm
 from django.contrib.auth.forms import UserCreationForm
 
+
 # Create your v iews here.
 
 #creating registerPage
+
 def register(request):
     form = CreateUserForm()
 
@@ -61,9 +63,9 @@ def customers(request ,pk):
 
 
     
-def aboutus(request):
+def login(request):
 
-    return render(request, 'customers/aboutus.html')
+    return render(request, 'customers/login.html')
 
 
 
