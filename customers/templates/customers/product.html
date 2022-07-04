@@ -1,0 +1,50 @@
+{% extends 'customers/main.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+
+        <div class="col">
+            <a href="{% url 'create-product' %}" class="btn btn-block btn-primary">Create Product</a>      
+            <hr>
+            <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    <th>Products</th>
+                    <th>size</th>
+                    <th>price</th>
+                    <th>Description</th>
+                    <th>Date_created</th>
+    
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for product in products %}
+                  <tr>
+                    <td>{{ product.product_name }}</td>
+                    <td>{{ product.size}}</td>
+                    <td>{{ product.price}}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.date_created }}</td>
+                   
+                  </tr>
+                  {% endfor %}
+                </tbody>
+                </table>
+        </div>
+    </div>
+    <!---end table-->
+</body>
+</html>
+  
+<h1>Products</h1> 
+
+{% endblock %}

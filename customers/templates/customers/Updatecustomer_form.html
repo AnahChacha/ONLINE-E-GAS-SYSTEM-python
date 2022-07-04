@@ -1,0 +1,24 @@
+{% extends 'customers/main.html' %}
+ {% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>Update customer </h1> 
+
+<div class="jumbotron">
+    <div class="col-6 offset-md-3">
+    <h1>UpdateCustomer Form</h1>
+    <hr>
+    <form action="" method="POST" autocomplete="off">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" class="btn btn-block btn-sm btn-success"></input>
+    </form>  
+    
+</div>
+  </div>
+
+
+
+
+{% endblock %}

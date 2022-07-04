@@ -1,0 +1,119 @@
+{% extends 'customers/main.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="col">
+    <div class="row">
+        <hr>
+
+        <div class="col-md">
+          
+            <div class="card-body" style="background-color:aqua ;"> 
+               <h5>Total orders:</h5> 
+               <hr>
+              <h3 style="text-align:center;padding: 1px; ;">{{total_order}}</h3>
+            </div>
+            
+        </div>
+           <!--end-->
+
+           <div class="col-md">
+          
+            <div class="card-body" style="background-color:aqua ;"> 
+               <h5>Pending Order:</h5> 
+               <hr>
+              <h3 style="text-align:center;padding: 1px; ;">{{pending}}</h3>
+            </div>
+            
+        </div>
+           <!--end-->
+           <div class="col-md">
+          
+            <div class="card-body" style="background-color:rgb(17, 248, 248) ;"> 
+               <h5>Delivered:</h5> 
+               <hr>
+              <h3 style="text-align:center;padding: 1px; ;">{{total_products}}</h3>
+            </div>
+            
+        </div>
+           <!--end-->
+    </div>
+    <hr>
+    <!--  row2   -->
+     <p>demo</p>
+      <div class="row">
+        <div class="col col-md-6">
+          <div class="card card-body">
+            <a href="{% url 'create-customer' %}" class="btn btn-block btn-primary">Create Customer</a>      
+                <table class="table table-hover table-sm">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for customer in customers %}
+                  <tr>
+                    <td> <a href="{%  url 'customer' customer.id  %}" class="btn btn-sm btn-primary">view</a></td>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{customer.email}}</td>
+                    <td> <a href="{%  url 'update-customer' customer.id  %}" class="btn btn-sm btn-secondary">edit</a></td>
+                  
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            
+          </div>
+        </div>
+         <!--end-->
+
+         <div class=" col col-md-6">
+         <div class="card card-body">
+         <a href="{% url 'create-order' %}" class="btn btn-primary btn-block">create order</a>
+         <hr>
+               <table class="table table-hover table-sm">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Size</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for order in orders %}
+                <tr>
+                  <td>{{ order.product }}</td>
+                  <td>{{ order.product.price }}</td>
+                  <td>{{ order.status }}</td>
+                  <td>{{ order.product.size }}</td>
+                  <td>{{ order.date_created }}</td>
+                  <td> <a href="{% url 'update-order' order.id %}" class="btn btn-sm btn-primary">Update</a></td>
+                  <td> <a href="{% url 'delete-order' order.id %}" class="btn btn-sm btn-danger">delete</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            
+            </table>
+          <p>total: <span><h1 >{{price__sum}}</h1></span></p>
+          <hr>
+           </div>
+            </div>
+         </div>
+         <!---closing row2-->
+      </div>
+      <!--end-->
+a
+        
+       </div>
+        </div>
+
+
+{% endblock %} 

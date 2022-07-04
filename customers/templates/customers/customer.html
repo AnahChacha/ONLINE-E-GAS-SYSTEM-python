@@ -1,0 +1,72 @@
+{% extends 'customers/main.html' %}
+
+{% block content %}
+<div class="container">
+
+    <div class="col">
+        <div class="row">
+        <div class="col-5">
+
+            <a href="#" class="btn btn-block btn-outline-secondary">Update Customer</a>
+            <a href="#" class="btn btn-block btn-outline-danger">Delete Customer</a>
+            <hr>
+        </div>
+        
+        <div class="col-5">
+          <p>Email:{{customers.email}}</p>
+          <p>Phone:{{customers.phone}}</p>
+
+        </div>
+
+
+        <div class="col-2"> 
+          <p>Total Order: {{ total_orders }}</p>
+
+        </div>
+        </div>
+        <!----row2-->
+<div class="row">
+    <div class="col">
+        <a href="#" class="btn btn-block btn-sm btn-outline">Search</a>
+    </div>
+</div>
+<!----end row 2-->
+
+<!----table-->
+
+<div class="row">
+    <div class="col">
+        <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th>Products</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Size</th>
+                <th>Date_created</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in orders %}
+              <tr>
+                <td>{{ order.product }}</td>
+                <td>{{ order.product.price }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.product.size }}</td>
+                <td>{{ order.date_created }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+            </table>
+    </div>
+</div>
+<!---end table-->
+
+
+    </div>
+  </div>
+
+
+{% endblock %}
+    

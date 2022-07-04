@@ -1,0 +1,25 @@
+
+{% extends 'customers/main.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>create Products </h1> 
+
+<div class="jumbotron">
+    <div class="col-6 offset-md-3">
+    <h1>Products form</h1>
+    <hr>
+    <form action="" method="POST" autocomplete="false">
+        {% csrf_token %}
+        {{form|crispy}}
+        <input type="submit" class="btn btn-block btn-sm btn-success"></input>
+    </form>  
+    
+</div>
+  </div>
+
+
+
+
+{% endblock %}
