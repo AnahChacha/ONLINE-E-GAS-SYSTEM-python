@@ -33,11 +33,21 @@
             <div class="card-body" style="background-color:rgb(17, 248, 248) ;"> 
                <h5>Delivered:</h5> 
                <hr>
-              <h3 style="text-align:center;padding: 1px; ;">{{total_products}}</h3>
+              <h3 style="text-align:center;padding: 1px; ;">{{delivered}}</h3>
             </div>
             
         </div>
            <!--end-->
+
+           <div class="col-md">
+          
+            <div class="card-body" style="background-color:rgb(17, 248, 248) ;"> 
+               <h5>Products:</h5> 
+               <hr>
+              <h3 style="text-align:center;padding: 1px; ;">{{total_products}}</h3>
+            </div>
+            
+        </div>
     </div>
     <hr>
     <!--  row2   -->
@@ -102,7 +112,7 @@
               </tbody>
             
             </table>
-          <p>total: <span><h1 >{{price__sum}}</h1></span></p>
+          <p>total: <span>{{total_price}}</span></p>
           <hr>
            </div>
             </div>

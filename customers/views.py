@@ -6,6 +6,8 @@ from .models import Customer,Product,Order
 from django.db.models import Sum
 from .forms import OrderForm,CustomerForm,ProductForm,CreateUserForm
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate,login,logout
+from django.contrib import messages
 
 
 # Create your v iews here.
@@ -19,9 +21,18 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request, 'Account created successfully for ' +user)
+            return redirect('loginPage')    
     
     context = {"form": form}
     return render(request,'customers/register.html' ,context) 
+
+def logoutPage(request): 
+    logout(request)
+    return redirect('loginPage')
+
+       
 
 
 def home(request):
@@ -31,14 +42,16 @@ def home(request):
     total_products=products.count()
     orders=Order.objects.all()
     total_order=orders.count()
+    delivered=orders.filter(status ='Delivered').count()
     pending=orders.filter(status='Pending').count()
     print(pending)
     
-    #total_price=Product.objects.all().aggregate(Sum('price'))
+    total_price=Product.objects.all().aggregate(Sum('price'))
     #total_price=Product.objects.annotate(Sum('price'))
     print("+++++++++++++++++++++++++++++++++++++++++++++++")
     context={"customers":customers,"products":products ,
-    "total_products":total_products,"total_order":total_order,"pending":pending, "orders":orders}
+    "total_products":total_products,"total_order":total_order,"pending":pending, "orders":orders,
+    "delivered":delivered,"total_price":total_price}
 
     return render(request, 'customers/dashboard.html' ,context)
 
@@ -63,7 +76,15 @@ def customers(request ,pk):
 
 
     
-def login(request):
+def loginPage(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request,username = username,password =password);
+        if user is not None:
+            login(request,user)
+            return redirect('home')
 
     return render(request, 'customers/login.html')
 

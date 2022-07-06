@@ -14,7 +14,7 @@
 			margin: 0;
 			padding: 0;
 			height: 100%;
-			background: #7abecc !important;
+			background: #4a595c !important;
 		}
 		.user_card {
 			width: 350px;
@@ -65,6 +65,7 @@
 				<div class="d-flex justify-content-center form_container">
 
 					<form method="POST" action="">
+						{% csrf_token %}
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -95,10 +96,10 @@
 				   		</div>
 					</form>
 				</div>
-		
+				{{form.errors}}
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Already have an account?
+						Already have an account?<a href="{% url 'loginPage' %}"class="ml-2">Login</a>
 					</div>
 				</div>
 			</div>
