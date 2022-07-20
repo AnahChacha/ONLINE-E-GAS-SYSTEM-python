@@ -9,7 +9,7 @@
 
         <div class="col-md">
           
-            <div class="card-body" style="background-color:aqua ;"> 
+            <div class="card-body" style="background-color:blueviolet ;"> 
                <h5>Total orders:</h5> 
                <hr>
               <h3 style="text-align:center;padding: 1px; ;">{{total_order}}</h3>
@@ -30,7 +30,7 @@
            <!--end-->
            <div class="col-md">
           
-            <div class="card-body" style="background-color:rgb(17, 248, 248) ;"> 
+            <div class="card-body" style="background-color:rgb(211, 223, 223) ;"> 
                <h5>Delivered:</h5> 
                <hr>
               <h3 style="text-align:center;padding: 1px; ;">{{delivered}}</h3>
@@ -41,20 +41,31 @@
 
            <div class="col-md">
           
-            <div class="card-body" style="background-color:rgb(17, 248, 248) ;"> 
+            <div class="card-body" style="background-color:yellowgreen ;"> 
                <h5>Products:</h5> 
                <hr>
               <h3 style="text-align:center;padding: 1px; ;">{{total_products}}</h3>
             </div>
             
         </div>
+
+        <div class="col-md">
+          
+          <div class="card-body" style="background-color:rgb(17, 248, 248) ;"> 
+             <h5>Customers:</h5> 
+             <hr>
+            <h3 style="text-align:center;padding: 1px; ;">{{total_customers}}</h3>
+          </div>
+          
+      </div>
+
     </div>
     <hr>
     <!--  row2   -->
-     <p>demo</p>
+    
       <div class="row">
-        <div class="col col-md-6">
-          <div class="card card-body">
+        <div class="col col-sm-7">
+          <div class="jumbotron jumbotron-fluid">
             <a href="{% url 'create-customer' %}" class="btn btn-block btn-primary">Create Customer</a>      
                 <table class="table table-hover table-sm">
                 <thead>
@@ -74,6 +85,7 @@
                     <td>{{customer.phone}}</td>
                     <td>{{customer.email}}</td>
                     <td> <a href="{%  url 'update-customer' customer.id  %}" class="btn btn-sm btn-secondary">edit</a></td>
+                    <td> <a href="{%  url 'deleteCustomer' customer.id  %}" class="btn btn-sm btn-danger">delete</a></td>
                   
                   </tr>
                   {% endfor %}
@@ -84,8 +96,8 @@
         </div>
          <!--end-->
 
-         <div class=" col col-md-6">
-         <div class="card card-body">
+         <div class=" col col-sm-5">
+          <div class="jumbotron jumbotron-fluid">
          <a href="{% url 'create-order' %}" class="btn btn-primary btn-block">create order</a>
          <hr>
                <table class="table table-hover table-sm">
@@ -93,7 +105,9 @@
                 <tr>
                   <th>Product</th>
                   <th>Price</th>
+                  <th>Status</th>
                   <th>Size</th>
+                  <th>Date created</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -120,7 +134,7 @@
          <!---closing row2-->
       </div>
       <!--end-->
-a
+
         
        </div>
         </div>

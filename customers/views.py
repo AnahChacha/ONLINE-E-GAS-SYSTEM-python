@@ -8,11 +8,13 @@ from .forms import OrderForm,CustomerForm,ProductForm,CreateUserForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
 # Create your v iews here.
 
 #creating registerPage
+
 
 def register(request):
     form = CreateUserForm()
@@ -34,7 +36,7 @@ def logoutPage(request):
 
        
 
-
+@login_required(login_url='loginPage')
 def home(request):
     customers=Customer.objects.all()
    # orders=customers.order_set.all()
@@ -45,16 +47,18 @@ def home(request):
     delivered=orders.filter(status ='Delivered').count()
     pending=orders.filter(status='Pending').count()
     print(pending)
+    total_customers=customers.count()
     
     total_price=Product.objects.all().aggregate(Sum('price'))
     #total_price=Product.objects.annotate(Sum('price'))
     print("+++++++++++++++++++++++++++++++++++++++++++++++")
     context={"customers":customers,"products":products ,
     "total_products":total_products,"total_order":total_order,"pending":pending, "orders":orders,
-    "delivered":delivered,"total_price":total_price}
+    "delivered":delivered,"total_price":total_price,"total_customers":total_customers}
 
     return render(request, 'customers/dashboard.html' ,context)
 
+@login_required(login_url='loginPage')
 def products(request ):
 
     products=Product.objects.all()
@@ -63,7 +67,7 @@ def products(request ):
     return render(request, 'customers/product.html', context)
 
 
-
+@login_required(login_url='loginPage')
 def customers(request ,pk):
     customers=Customer.objects.get(id=pk)
   
@@ -73,6 +77,14 @@ def customers(request ,pk):
     print(customers)
 
     return render(request, 'customers/customer.html' ,context)
+
+@login_required(login_url='loginPage')
+def customer(request):
+    customer = Customer.objects.all()
+    context={"customer":customer}
+
+    return render(request, 'customers/customer.html' ,context)
+
 
 
     
@@ -91,6 +103,7 @@ def loginPage(request):
 
 
 #creating order form
+@login_required(login_url='loginPage')
 def createOrder_form(request):
     form=OrderForm()
     if request.method=="POST":
@@ -186,3 +199,43 @@ def createProduct_form(request):
     return render(request, 'customers/createProduct_form.html',context)
 
     
+def  deleteCustomer(request, pk):
+    customer=Customer.objects.get(id=pk)
+    if request.method =="POST":
+        customer.delete()
+        return redirect('home')
+    
+    context={"customer": customer}
+
+    return render(request, 'customers/deleteCustomer.html',context)
+
+
+def updateProducts(request, pk):
+  
+    product=Product.objects.get(id=pk)
+    form=ProductForm(instance=product)
+    if request.method == 'POST':
+        form=ProductForm( request.POST ,instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product')
+
+    context={"form":form ,'product':product}
+  
+    return render(request, 'customers/createProduct_Form.html',context)
+
+
+
+def deleteProduct(request,pk):
+
+    product=Product.objects.get(id=pk)
+    form=ProductForm(instance=product)
+    if request.method == 'POST':
+        form=ProductForm( request.POST ,instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect('product')
+
+    context={"form":form ,'product':product}
+
+    return render(request, 'customers/deleteProduct.html', context)    

@@ -15,4 +15,9 @@ urlpatterns = [
     path('createProduct/', views.createProduct_form ,name="create-product"),
     path('register/', views.register, name="register"),
     path('logout/', views.logoutPage, name="logoutPage"),
+    path('customer/', views.customer, name="customer"),
+    path('deleteCustomer/<str:pk>', views.deleteCustomer, name="deleteCustomer"),
+    path('updateProduct/<str:pk>', views.updateProducts, name="update-Product"),
+    path('deleteProduct/<str:pk>', views.deleteProduct, name="delete-Product"),
+    
    ]

@@ -12,8 +12,10 @@
 <body>
     <div class="row">
 
-        <div class="col">
-            <a href="{% url 'create-product' %}" class="btn btn-block btn-primary">Create Product</a>      
+        <div class="col col-md-8 offset-md-2">
+          
+          <div class="jumbotron jumbotron-fluid">
+            <a href="{% url 'create-product' %}" class="btn btn-primary">Create Product</a>      
             <hr>
             <table class="table table-borderless">
                 <thead>
@@ -34,6 +36,8 @@
                     <td>{{ product.price}}</td>
                     <td>{{ product.description }}</td>
                     <td>{{ product.date_created }}</td>
+                    <td><a href="{% url 'update-Product' product.id %}" class="btn btn-sm btn-primary">Update</a></td>
+                    <td><a href="{% url 'delete-Product' product.id %}" class="btn btn-sm btn-danger">Delete</a></td>
                    
                   </tr>
                   {% endfor %}
@@ -41,10 +45,6 @@
                 </table>
         </div>
     </div>
-    <!---end table-->
-</body>
-</html>
-  
-<h1>Products</h1> 
+    </div>
 
 {% endblock %}
