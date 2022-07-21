@@ -1,0 +1,47 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="19">
+            <item index="0" class="java.lang.String" itemvalue="qtconsole" />
+            <item index="1" class="java.lang.String" itemvalue="matplotlip" />
+            <item index="2" class="java.lang.String" itemvalue="pathspec" />
+            <item index="3" class="java.lang.String" itemvalue="pywinpty" />
+            <item index="4" class="java.lang.String" itemvalue="black" />
+            <item index="5" class="java.lang.String" itemvalue="mypy-extensions" />
+            <item index="6" class="java.lang.String" itemvalue="ipython" />
+            <item index="7" class="java.lang.String" itemvalue="marshmallow" />
+            <item index="8" class="java.lang.String" itemvalue="QtPy" />
+            <item index="9" class="java.lang.String" itemvalue="numpy" />
+            <item index="10" class="java.lang.String" itemvalue="nbconvert" />
+            <item index="11" class="java.lang.String" itemvalue="pandas" />
+            <item index="12" class="java.lang.String" itemvalue="pure-eval" />
+            <item index="13" class="java.lang.String" itemvalue="jupyter" />
+            <item index="14" class="java.lang.String" itemvalue="stack-data" />
+            <item index="15" class="java.lang.String" itemvalue="Django" />
+            <item index="16" class="java.lang.String" itemvalue="jupyter-console" />
+            <item index="17" class="java.lang.String" itemvalue="prompt-toolkit" />
+            <item index="18" class="java.lang.String" itemvalue="tomli" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E271" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="dtl_api.urls.rest_framework_swagger" />
+          <option value="dtl_api.urls.drf_yasg" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
