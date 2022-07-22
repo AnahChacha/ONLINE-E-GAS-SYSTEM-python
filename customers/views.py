@@ -29,6 +29,7 @@ def register(request):
 
             group = Group.objects.get(name='customer')
             user.groups.add(group)
+            Customer.objects.create(user=user)
 
             messages.success(request, 'Account created successfully for ' +username)
             return redirect('loginPage')    
@@ -75,7 +76,6 @@ def products(request ):
 
     return render(request, 'customers/product.html', context)
 
-
 @login_required(login_url='loginPage')
 @allowed_users(allowed_roles=['admin'])
 def customers(request ,pk):
@@ -85,7 +85,6 @@ def customers(request ,pk):
     total_orders=orders.count()
     context={"customers":customers,"orders":orders,"total_orders":total_orders}
     print(customers)
-
     return render(request, 'customers/customer.html' ,context)
 
 @login_required(login_url='loginPage')
@@ -95,7 +94,6 @@ def customer(request):
     context={"customer":customer}
 
     return render(request, 'customers/customer.html' ,context)
-
 
 @unauthenticated_user
 def loginPage(request):
@@ -124,13 +122,11 @@ def createOrder_form(request):
             form.save()
             return redirect('home')
 
-          
 
 
     context={"form":form}
 
     return render(request, 'customers/createOrder_form.html',context)
-
 
 
 def updateOrder(request, pk):
@@ -197,7 +193,6 @@ def createProduct_form(request):
             form.save()
             return redirect('product')
 
-
     context={"form":form}
 
     return render(request, 'customers/createProduct_form.html',context)
@@ -236,10 +231,19 @@ def deleteProduct(request,pk):
             return redirect('product')
 
     context={"form":form ,'product':product}
-
     return render(request, 'customers/deleteProduct.html', context)
 
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
 def userPage(request):
-    return  render(request ,'customers/user.html')
+    orders = request.user.customer.order_set.all()
+    total_orders = orders.count()
+    delivered = orders.filter(status='Delivered').count()
+    pending = orders.filter(status='Pending').count()
+    print('ORDERS:', orders)
 
+    context = {'orders': orders, 'total_orders': total_orders,
+               'delivered': delivered, 'pending': pending}
+
+    return  render(request ,'customers/user.html',context)
 
